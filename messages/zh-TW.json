@@ -48,7 +48,13 @@
     "inStock": "庫存",
     "category": "類別",
     "soldBy": "販售者",
-    "viewSellerProducts": "查看全部商品"
+    "viewSellerProducts": "查看全部商品",
+    "timeline": "賣家動態",
+    "timelineEmpty": "尚無動態。",
+    "postUpdate": "發布動態",
+    "updatePlaceholder": "分享商品的最新狀態...",
+    "posting": "發布中...",
+    "addPhoto": "新增圖片"
   },
   "cart": {
     "title": "購物車",

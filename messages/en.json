@@ -48,7 +48,13 @@
     "inStock": "in stock",
     "category": "Category",
     "soldBy": "Sold by",
-    "viewSellerProducts": "View all products"
+    "viewSellerProducts": "View all products",
+    "timeline": "Seller Updates",
+    "timelineEmpty": "No updates yet.",
+    "postUpdate": "Post Update",
+    "updatePlaceholder": "Share the latest status of your product...",
+    "posting": "Posting...",
+    "addPhoto": "Add photo"
   },
   "cart": {
     "title": "Shopping Cart",

@@ -48,7 +48,13 @@
     "inStock": "在庫",
     "category": "カテゴリー",
     "soldBy": "販売者",
-    "viewSellerProducts": "全商品を見る"
+    "viewSellerProducts": "全商品を見る",
+    "timeline": "セラー更新情報",
+    "timelineEmpty": "更新情報はまだありません。",
+    "postUpdate": "投稿する",
+    "updatePlaceholder": "商品の最新状況をシェアしてください...",
+    "posting": "投稿中...",
+    "addPhoto": "写真を追加"
   },
   "cart": {
     "title": "ショッピングカート",
