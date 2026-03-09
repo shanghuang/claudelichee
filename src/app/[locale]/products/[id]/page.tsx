@@ -7,27 +7,7 @@ import { Product } from '@/types';
 import { formatPrice } from '@/lib/utils';
 import { useCart } from '@/context/CartContext';
 import Button from '@/components/ui/Button';
-
-function getFruitEmoji(name: string): string {
-  const emojiMap: Record<string, string> = {
-    'Red Apple': '🍎',
-    'Banana': '🍌',
-    'Orange': '🍊',
-    'Strawberry': '🍓',
-    'Mango': '🥭',
-    'Blueberry': '🫐',
-    'Watermelon': '🍉',
-    'Grapes': '🍇',
-    'Pineapple': '🍍',
-    'Lemon': '🍋',
-    'Avocado': '🥑',
-    'Peach': '🍑',
-    'Kiwi': '🥝',
-    'Cherry': '🍒',
-    'Raspberry': '🫐',
-  };
-  return emojiMap[name] || '🍏';
-}
+import Image from 'next/image';
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -96,14 +76,23 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
       <div className="grid md:grid-cols-2 gap-8">
         {/* Product Image */}
-        <div className="bg-gray-50 rounded-xl h-96 flex items-center justify-center">
-          <span className="text-9xl">{getFruitEmoji(product.name)}</span>
+        <div className="bg-gray-50 rounded-xl h-96 flex items-center justify-center overflow-hidden relative">
+          {product.image ? (
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover rounded-xl"
+            />
+          ) : (
+            <span className="text-9xl">🍏</span>
+          )}
         </div>
 
         {/* Product Details */}
         <div>
           <div className="flex items-start justify-between mb-4">
-            <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
+            <h1 className="text-3xl font-bold text-white-900">{product.name}</h1>
             <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm capitalize">
               {product.category}
             </span>
@@ -117,6 +106,25 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           </div>
 
           <p className="text-gray-600 mb-6 text-lg">{product.description}</p>
+
+          {product.sellerName && product.sellerId && (
+            <div className="flex items-center gap-2 mb-6 p-3 bg-gray-50 rounded-lg">
+              <span className="text-sm text-gray-500">{t('soldBy')}:</span>
+              <Link
+                href={`/products?sellerId=${product.sellerId}`}
+                className="text-sm font-medium text-green-600 hover:text-green-700"
+              >
+                {product.sellerName}
+              </Link>
+              <span className="text-gray-300">·</span>
+              <Link
+                href={`/products?sellerId=${product.sellerId}`}
+                className="text-xs text-gray-400 hover:text-green-600"
+              >
+                {t('viewSellerProducts')} →
+              </Link>
+            </div>
+          )}
 
           <div className="flex items-center gap-4 mb-6">
             <span className="text-gray-700 font-medium">{t('quantity')}:</span>

@@ -69,10 +69,10 @@ function RegisterSellerForm() {
     <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             {t('sellerTitle')}
           </h1>
-          <p className="text-gray-600">{t('sellerSub')}</p>
+          <p className="text-black-600">{t('sellerSub')}</p>
         </div>
 
         <div className="bg-white rounded-xl shadow-sm border p-6">

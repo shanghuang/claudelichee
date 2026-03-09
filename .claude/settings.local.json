@@ -15,7 +15,9 @@
       "Bash(test:*)",
       "Bash(npm install:*)",
       "Bash(node:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(sqlite3:*)"
     ]
   }
 }

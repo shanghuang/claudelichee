@@ -31,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       </Link>
       <div className="p-4">
-        <div className="flex items-start justify-between mb-2">
+        <div className="flex items-start justify-between mb-1">
           <Link href={`/products/${product.id}`}>
             <h3 className="font-semibold text-gray-900 hover:text-green-600 transition-colors">
               {product.name}
@@ -41,6 +41,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.category}
           </span>
         </div>
+        {product.sellerName && (
+          <p className="text-xs text-gray-400 mb-2">{product.sellerName}</p>
+        )}
         <p className="text-gray-500 text-sm mb-3 line-clamp-2">
           {product.description}
         </p>

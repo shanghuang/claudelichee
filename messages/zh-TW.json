@@ -2,6 +2,7 @@
   "nav": {
     "products": "商品",
     "orders": "訂單",
+    "history": "購買紀錄",
     "admin": "管理",
     "seller": "賣家",
     "signIn": "登入",
@@ -18,7 +19,11 @@
     "feature2Title": "快速配送",
     "feature2Desc": "提供當日及次日配送服務",
     "feature3Title": "最佳品質",
-    "feature3Desc": "每次配送前均人工挑選及品質把關"
+    "feature3Desc": "每次配送前均人工挑選及品質把關",
+    "viewCategories": "瀏覽分類",
+    "shopByCategory": "依類別選購",
+    "featuredFruits": "精選水果",
+    "viewAll": "查看全部 →"
   },
   "products": {
     "title": "新鮮水果",
@@ -28,14 +33,22 @@
     "inStock": "有庫存",
     "outOfStock": "缺貨",
     "noResults": "找不到商品。",
-    "perUnit": "每"
+    "perUnit": "每",
+    "categoryTropical": "熱帶水果",
+    "categoryCitrus": "柑橘類",
+    "categoryBerries": "莓果類",
+    "categoryMelons": "瓜類",
+    "categoryStone": "核果類",
+    "categoryOther": "其他"
   },
   "productDetail": {
     "addToCart": "加入購物車",
     "quantity": "數量",
     "backToProducts": "← 返回商品",
     "inStock": "庫存",
-    "category": "類別"
+    "category": "類別",
+    "soldBy": "販售者",
+    "viewSellerProducts": "查看全部商品"
   },
   "cart": {
     "title": "購物車",
@@ -183,5 +196,28 @@
     "actions": "操作",
     "approve": "核准",
     "reject": "拒絕"
+  },
+  "history": {
+    "title": "購買紀錄",
+    "noHistory": "尚無購買紀錄。",
+    "startShopping": "開始購物",
+    "lastOrdered": "最近購買",
+    "timesOrdered": "次購買",
+    "buyAgain": "再次購買",
+    "unavailable": "已下架",
+    "soldBy": "販售者"
+  },
+  "footer": {
+    "brandDesc": "新鮮水果，直送到府。來自當地農場的優質農產品。",
+    "quickLinks": "快速連結",
+    "allProducts": "全部商品",
+    "tropical": "熱帶水果",
+    "berries": "莓果類",
+    "citrus": "柑橘類",
+    "contact": "聯絡我們",
+    "email": "電子信箱：hello@lichee.com",
+    "phone": "電話：(555) 123-4567",
+    "hours": "營業時間：週一至週六 8am-8pm",
+    "copyright": "© {year} Lichee. 版權所有。"
   }
 }

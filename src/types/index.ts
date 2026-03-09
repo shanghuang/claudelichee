@@ -8,6 +8,7 @@ export interface Product {
   stock: number;
   unit: string;
   sellerId?: number | null;
+  sellerName?: string | null;
   status: 'pending' | 'approved' | 'rejected';
 }
 

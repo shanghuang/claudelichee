@@ -1,4 +1,10 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
+
 export default function Footer() {
+  const t = useTranslations('footer');
   return (
     <footer className="bg-gray-50 border-t mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -10,50 +16,50 @@ export default function Footer() {
               <span className="text-xl font-bold text-green-600">Lichee</span>
             </div>
             <p className="text-gray-600 text-sm">
-              Fresh fruits delivered to your door. Quality produce from local farms.
+              {t('brandDesc')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Quick Links</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/products" className="text-gray-600 hover:text-green-600">
-                  All Products
-                </a>
+                <Link href="/products" className="text-gray-600 hover:text-green-600">
+                  {t('allProducts')}
+                </Link>
               </li>
               <li>
-                <a href="/products?category=tropical" className="text-gray-600 hover:text-green-600">
-                  Tropical Fruits
-                </a>
+                <Link href="/products?category=tropical" className="text-gray-600 hover:text-green-600">
+                  {t('tropical')}
+                </Link>
               </li>
               <li>
-                <a href="/products?category=berries" className="text-gray-600 hover:text-green-600">
-                  Berries
-                </a>
+                <Link href="/products?category=berries" className="text-gray-600 hover:text-green-600">
+                  {t('berries')}
+                </Link>
               </li>
               <li>
-                <a href="/products?category=citrus" className="text-gray-600 hover:text-green-600">
-                  Citrus
-                </a>
+                <Link href="/products?category=citrus" className="text-gray-600 hover:text-green-600">
+                  {t('citrus')}
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Contact</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">{t('contact')}</h3>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li>Email: hello@lichee.com</li>
-              <li>Phone: (555) 123-4567</li>
-              <li>Hours: Mon-Sat 8am-8pm</li>
+              <li>{t('email')}</li>
+              <li>{t('phone')}</li>
+              <li>{t('hours')}</li>
             </ul>
           </div>
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Lichee. All rights reserved.</p>
+          <p>{t('copyright', { year: new Date().getFullYear() })}</p>
         </div>
       </div>
     </footer>

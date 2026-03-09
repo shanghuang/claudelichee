@@ -8,11 +8,22 @@ import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 
-const categories = ['tropical', 'citrus', 'berries', 'melons', 'stone', 'other'];
+const CATEGORY_SLUGS = ['tropical', 'citrus', 'berries', 'melons', 'stone', 'other'] as const;
 const units = ['lb', 'each', 'pint', 'kg', 'oz'];
 
 export default function NewProductPage() {
   const t = useTranslations('seller');
+  const tp = useTranslations('products');
+
+  type CategorySlug = typeof CATEGORY_SLUGS[number];
+  const categoryKeyMap: Record<CategorySlug, Parameters<typeof tp>[0]> = {
+    tropical: 'categoryTropical',
+    citrus: 'categoryCitrus',
+    berries: 'categoryBerries',
+    melons: 'categoryMelons',
+    stone: 'categoryStone',
+    other: 'categoryOther',
+  };
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [formData, setFormData] = useState({
@@ -184,8 +195,8 @@ export default function NewProductPage() {
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
             >
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
+              {CATEGORY_SLUGS.map(cat => (
+                <option key={cat} value={cat}>{tp(categoryKeyMap[cat])}</option>
               ))}
             </select>
           </div>

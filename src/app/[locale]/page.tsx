@@ -1,21 +1,48 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { db } from '@/db';
-import { products } from '@/db/schema';
+import { products, users } from '@/db/schema';
+import { eq, and } from 'drizzle-orm';
 import ProductGrid from '@/components/products/ProductGrid';
 import Button from '@/components/ui/Button';
 
+const CATEGORY_SLUGS = ['tropical', 'citrus', 'berries', 'melons', 'stone', 'other'] as const;
+
 export default async function Home() {
   const t = await getTranslations('home');
-  const featuredProducts = db.select().from(products).limit(8).all();
+  const tp = await getTranslations('products');
 
-  const categories = [
-    { name: 'Tropical', slug: 'tropical', emoji: '🥭' },
-    { name: 'Citrus', slug: 'citrus', emoji: '🍊' },
-    { name: 'Berries', slug: 'berries', emoji: '🍓' },
-    { name: 'Melons', slug: 'melons', emoji: '🍉' },
-    { name: 'Stone Fruits', slug: 'stone', emoji: '🍑' },
-  ];
+  type CategorySlug = typeof CATEGORY_SLUGS[number];
+  const categoryKeyMap: Record<CategorySlug, Parameters<typeof tp>[0]> = {
+    tropical: 'categoryTropical',
+    citrus: 'categoryCitrus',
+    berries: 'categoryBerries',
+    melons: 'categoryMelons',
+    stone: 'categoryStone',
+    other: 'categoryOther',
+  };
+
+  const categoryData = CATEGORY_SLUGS.map(slug => ({
+    slug,
+    name: tp(categoryKeyMap[slug]),
+    items: db.select({
+        id: products.id,
+        name: products.name,
+        description: products.description,
+        price: products.price,
+        image: products.image,
+        category: products.category,
+        stock: products.stock,
+        unit: products.unit,
+        sellerId: products.sellerId,
+        sellerName: users.name,
+        status: products.status,
+      })
+      .from(products)
+      .leftJoin(users, eq(products.sellerId, users.id))
+      .where(and(eq(products.status, 'approved'), eq(products.category, slug)))
+      .limit(4).all(),
+  })).filter(c => c.items.length > 0);
 
   return (
     <div>
@@ -35,7 +62,7 @@ export default async function Home() {
               </Link>
               <Link href="/products">
                 <Button variant="outline" size="lg">
-                  View Categories
+                  {t('viewCategories')}
                 </Button>
               </Link>
             </div>
@@ -43,49 +70,33 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Categories */}
+      {/* Categories with Products */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Shop by Category
+          <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center">
+            {t('shopByCategory')}
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/products?category=${category.slug}`}
-                className="flex flex-col items-center p-6 bg-gray-50 rounded-xl hover:bg-green-50 transition-colors group"
-              >
-                <span className="text-4xl mb-2">{category.emoji}</span>
-                <span className="font-medium text-gray-700 group-hover:text-green-600">
-                  {category.name}
-                </span>
-              </Link>
+          <div className="space-y-12">
+            {categoryData.map(({ slug, name, items }) => (
+              <div key={slug}>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
+                  <Link
+                    href={`/products?category=${slug}`}
+                    className="text-sm text-green-600 hover:text-green-700 font-medium"
+                  >
+                    {t('viewAll')}
+                  </Link>
+                </div>
+                <ProductGrid products={items} />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">
-              Featured Fruits
-            </h2>
-            <Link
-              href="/products"
-              className="text-green-600 hover:text-green-700 font-medium"
-            >
-              View All →
-            </Link>
-          </div>
-          <ProductGrid products={featuredProducts} />
-        </div>
-      </section>
-
       {/* Features */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
             {t('whyTitle')}

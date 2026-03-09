@@ -2,6 +2,7 @@
   "nav": {
     "products": "Products",
     "orders": "Orders",
+    "history": "History",
     "admin": "Admin",
     "seller": "Seller",
     "signIn": "Sign In",
@@ -18,7 +19,11 @@
     "feature2Title": "Fast Delivery",
     "feature2Desc": "Same-day and next-day delivery available in your area",
     "feature3Title": "Best Quality",
-    "feature3Desc": "Hand-picked and quality-checked before every delivery"
+    "feature3Desc": "Hand-picked and quality-checked before every delivery",
+    "viewCategories": "View Categories",
+    "shopByCategory": "Shop by Category",
+    "featuredFruits": "Featured Fruits",
+    "viewAll": "View All →"
   },
   "products": {
     "title": "Fresh Fruits",
@@ -28,14 +33,22 @@
     "inStock": "In stock",
     "outOfStock": "Out of stock",
     "noResults": "No products found.",
-    "perUnit": "per"
+    "perUnit": "per",
+    "categoryTropical": "Tropical",
+    "categoryCitrus": "Citrus",
+    "categoryBerries": "Berries",
+    "categoryMelons": "Melons",
+    "categoryStone": "Stone Fruits",
+    "categoryOther": "Other"
   },
   "productDetail": {
     "addToCart": "Add to Cart",
     "quantity": "Quantity",
     "backToProducts": "← Back to Products",
     "inStock": "in stock",
-    "category": "Category"
+    "category": "Category",
+    "soldBy": "Sold by",
+    "viewSellerProducts": "View all products"
   },
   "cart": {
     "title": "Shopping Cart",
@@ -183,5 +196,28 @@
     "actions": "Actions",
     "approve": "Approve",
     "reject": "Reject"
+  },
+  "history": {
+    "title": "Purchase History",
+    "noHistory": "No purchase history yet.",
+    "startShopping": "Start Shopping",
+    "lastOrdered": "Last ordered",
+    "timesOrdered": "times ordered",
+    "buyAgain": "Buy Again",
+    "unavailable": "Unavailable",
+    "soldBy": "Sold by"
+  },
+  "footer": {
+    "brandDesc": "Fresh fruits delivered to your door. Quality produce from local farms.",
+    "quickLinks": "Quick Links",
+    "allProducts": "All Products",
+    "tropical": "Tropical Fruits",
+    "berries": "Berries",
+    "citrus": "Citrus",
+    "contact": "Contact",
+    "email": "Email: hello@lichee.com",
+    "phone": "Phone: (555) 123-4567",
+    "hours": "Hours: Mon-Sat 8am-8pm",
+    "copyright": "© {year} Lichee. All rights reserved."
   }
 }

@@ -11,6 +11,7 @@ function ProductsContent() {
   const t = useTranslations('products');
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category') || '';
+  const sellerId = searchParams.get('sellerId') || '';
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,21 +20,24 @@ function ProductsContent() {
 
   const categories = [
     { name: t('allCategories'), slug: '' },
-    { name: 'Tropical', slug: 'tropical' },
-    { name: 'Citrus', slug: 'citrus' },
-    { name: 'Berries', slug: 'berries' },
-    { name: 'Melons', slug: 'melons' },
-    { name: 'Stone Fruits', slug: 'stone' },
-    { name: 'Other', slug: 'other' },
+    { name: t('categoryTropical'), slug: 'tropical' },
+    { name: t('categoryCitrus'), slug: 'citrus' },
+    { name: t('categoryBerries'), slug: 'berries' },
+    { name: t('categoryMelons'), slug: 'melons' },
+    { name: t('categoryStone'), slug: 'stone' },
+    { name: t('categoryOther'), slug: 'other' },
   ];
 
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true);
       const params = new URLSearchParams();
-      if (category) params.set('category', category);
-      if (search) params.set('search', search);
-
+      if (sellerId) {
+        params.set('sellerId', sellerId);
+      } else {
+        if (category) params.set('category', category);
+        if (search) params.set('search', search);
+      }
       const res = await fetch(`/api/products?${params.toString()}`);
       const data = await res.json();
       setProducts(data);
@@ -42,10 +46,35 @@ function ProductsContent() {
 
     const debounce = setTimeout(fetchProducts, 300);
     return () => clearTimeout(debounce);
-  }, [category, search]);
+  }, [category, search, sellerId]);
+
+  const sellerName = products.length > 0 ? products[0].sellerName : null;
+  const title = sellerId && sellerName ? sellerName : t('title');
+
+  const grid = loading ? (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {[...Array(8)].map((_, i) => (
+        <div key={i} className="bg-gray-100 rounded-xl h-72 animate-pulse" />
+      ))}
+    </div>
+  ) : products.length === 0 ? (
+    <p className="text-gray-500 text-center py-12">{t('noResults')}</p>
+  ) : (
+    <ProductGrid products={products} />
+  );
+
+  if (sellerId) {
+    return (
+      <>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">{title}</h1>
+        {grid}
+      </>
+    );
+  }
 
   return (
     <>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">{t('title')}</h1>
       {/* Filters */}
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="w-full md:w-64">
@@ -71,31 +100,14 @@ function ProductsContent() {
           ))}
         </div>
       </div>
-
-      {/* Products */}
-      {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="bg-gray-100 rounded-xl h-72 animate-pulse"
-            />
-          ))}
-        </div>
-      ) : products.length === 0 ? (
-        <p className="text-gray-500 text-center py-12">{t('noResults')}</p>
-      ) : (
-        <ProductGrid products={products} />
-      )}
+      {grid}
     </>
   );
 }
 
 export default function ProductsPage() {
-  const t = useTranslations('products');
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">{t('title')}</h1>
       <Suspense fallback={
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {[...Array(8)].map((_, i) => (

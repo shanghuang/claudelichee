@@ -2,6 +2,7 @@
   "nav": {
     "products": "商品",
     "orders": "注文",
+    "history": "購入履歴",
     "admin": "管理",
     "seller": "セラー",
     "signIn": "ログイン",
@@ -18,7 +19,11 @@
     "feature2Title": "迅速配送",
     "feature2Desc": "当日・翌日配送対応",
     "feature3Title": "最高品質",
-    "feature3Desc": "配送前に一つひとつ手作業で選別・品質確認"
+    "feature3Desc": "配送前に一つひとつ手作業で選別・品質確認",
+    "viewCategories": "カテゴリーを見る",
+    "shopByCategory": "カテゴリーから選ぶ",
+    "featuredFruits": "おすすめフルーツ",
+    "viewAll": "すべて見る →"
   },
   "products": {
     "title": "新鮮なフルーツ",
@@ -28,14 +33,22 @@
     "inStock": "在庫あり",
     "outOfStock": "在庫なし",
     "noResults": "商品が見つかりません。",
-    "perUnit": "/"
+    "perUnit": "/",
+    "categoryTropical": "トロピカル",
+    "categoryCitrus": "柑橘類",
+    "categoryBerries": "ベリー類",
+    "categoryMelons": "メロン類",
+    "categoryStone": "核果類",
+    "categoryOther": "その他"
   },
   "productDetail": {
     "addToCart": "カートに追加",
     "quantity": "数量",
     "backToProducts": "← 商品一覧に戻る",
     "inStock": "在庫",
-    "category": "カテゴリー"
+    "category": "カテゴリー",
+    "soldBy": "販売者",
+    "viewSellerProducts": "全商品を見る"
   },
   "cart": {
     "title": "ショッピングカート",
@@ -183,5 +196,28 @@
     "actions": "操作",
     "approve": "承認",
     "reject": "却下"
+  },
+  "history": {
+    "title": "購入履歴",
+    "noHistory": "購入履歴はまだありません。",
+    "startShopping": "買い物を始める",
+    "lastOrdered": "最終購入",
+    "timesOrdered": "回購入",
+    "buyAgain": "また買う",
+    "unavailable": "販売終了",
+    "soldBy": "販売者"
+  },
+  "footer": {
+    "brandDesc": "新鮮なフルーツをご自宅へ。地元農家からの高品質な農産物。",
+    "quickLinks": "クイックリンク",
+    "allProducts": "全商品",
+    "tropical": "トロピカルフルーツ",
+    "berries": "ベリー類",
+    "citrus": "柑橘類",
+    "contact": "お問い合わせ",
+    "email": "メール：hello@lichee.com",
+    "phone": "電話：(555) 123-4567",
+    "hours": "営業時間：月〜土 8am-8pm",
+    "copyright": "© {year} Lichee. 無断転載禁止。"
   }
 }
