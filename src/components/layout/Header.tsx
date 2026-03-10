@@ -64,6 +64,12 @@ export default function Header() {
                 >
                   {t('history')}
                 </Link>
+                <Link
+                  href="/feed"
+                  className="text-gray-600 hover:text-green-600 transition-colors"
+                >
+                  {t('feed')}
+                </Link>
                 {session.user?.role === 'admin' && (
                   <Link
                     href="/admin"
@@ -224,6 +230,13 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t('history')}
+                  </Link>
+                  <Link
+                    href="/feed"
+                    className="text-gray-600 hover:text-green-600"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {t('feed')}
                   </Link>
                   {session.user?.role === 'admin' && (
                     <Link

@@ -3,6 +3,7 @@
     "products": "商品",
     "orders": "訂單",
     "history": "購買紀錄",
+    "feed": "動態",
     "admin": "管理",
     "seller": "賣家",
     "signIn": "登入",
@@ -49,6 +50,9 @@
     "category": "類別",
     "soldBy": "販售者",
     "viewSellerProducts": "查看全部商品",
+    "follow": "追蹤",
+    "unfollow": "取消追蹤",
+    "following": "已追蹤",
     "timeline": "賣家動態",
     "timelineEmpty": "尚無動態。",
     "postUpdate": "發布動態",
@@ -212,6 +216,17 @@
     "buyAgain": "再次購買",
     "unavailable": "已下架",
     "soldBy": "販售者"
+  },
+  "feed": {
+    "title": "賣家動態",
+    "noFeed": "目前沒有動態。",
+    "notLoggedIn": "請登入以查看您追蹤的賣家動態。",
+    "noFollows": "您尚未追蹤任何賣家。",
+    "browseProducts": "瀏覽商品",
+    "by": "來自",
+    "follow": "追蹤",
+    "unfollow": "取消追蹤",
+    "following": "已追蹤"
   },
   "footer": {
     "brandDesc": "新鮮水果，直送到府。來自當地農場的優質農產品。",

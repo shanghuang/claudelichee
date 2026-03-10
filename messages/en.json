@@ -3,6 +3,7 @@
     "products": "Products",
     "orders": "Orders",
     "history": "History",
+    "feed": "Feed",
     "admin": "Admin",
     "seller": "Seller",
     "signIn": "Sign In",
@@ -49,6 +50,9 @@
     "category": "Category",
     "soldBy": "Sold by",
     "viewSellerProducts": "View all products",
+    "follow": "Follow",
+    "unfollow": "Unfollow",
+    "following": "Following",
     "timeline": "Seller Updates",
     "timelineEmpty": "No updates yet.",
     "postUpdate": "Post Update",
@@ -212,6 +216,17 @@
     "buyAgain": "Buy Again",
     "unavailable": "Unavailable",
     "soldBy": "Sold by"
+  },
+  "feed": {
+    "title": "Seller Feed",
+    "noFeed": "No updates yet.",
+    "notLoggedIn": "Sign in to see updates from sellers you follow.",
+    "noFollows": "You're not following any sellers yet.",
+    "browseProducts": "Browse Products",
+    "by": "by",
+    "follow": "Follow",
+    "unfollow": "Unfollow",
+    "following": "Following"
   },
   "footer": {
     "brandDesc": "Fresh fruits delivered to your door. Quality produce from local farms.",

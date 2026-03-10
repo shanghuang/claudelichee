@@ -25,7 +25,8 @@ export default function SellerDashboard() {
       .then(data => {
         setStats(data);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   if (loading) {

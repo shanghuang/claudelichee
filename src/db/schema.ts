@@ -40,6 +40,13 @@ export const productTimeline = sqliteTable('product_timeline', {
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });
 
+export const sellerFollows = sqliteTable('seller_follows', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  buyerId: integer('buyer_id').notNull().references(() => users.id),
+  sellerId: integer('seller_id').notNull().references(() => users.id),
+  createdAt: integer('created_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+});
+
 export const orderItems = sqliteTable('order_items', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   orderId: integer('order_id').notNull().references(() => orders.id),

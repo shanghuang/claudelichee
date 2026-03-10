@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, use, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
 import { Link } from '@/i18n/navigation';
@@ -31,6 +31,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [posting, setPosting] = useState(false);
+  const [following, setFollowing] = useState(false);
+  const [followLoading, setFollowLoading] = useState(false);
 
   useEffect(() => {
     async function fetchProduct() {
@@ -48,6 +50,36 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       .then(r => r.json())
       .then(setTimeline);
   }, [id]);
+
+  const checkFollow = useCallback(async (sellerId: number) => {
+    if (!session?.user?.id) return;
+    const res = await fetch('/api/follow');
+    if (res.ok) {
+      const ids: number[] = await res.json();
+      setFollowing(ids.includes(sellerId));
+    }
+  }, [session?.user?.id]);
+
+  useEffect(() => {
+    if (product?.sellerId) {
+      checkFollow(product.sellerId);
+    }
+  }, [product?.sellerId, checkFollow]);
+
+  const handleFollow = async () => {
+    if (!product?.sellerId || !session?.user?.id) return;
+    setFollowLoading(true);
+    const method = following ? 'DELETE' : 'POST';
+    const res = await fetch('/api/follow', {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sellerId: product.sellerId }),
+    });
+    if (res.ok) {
+      setFollowing(!following);
+    }
+    setFollowLoading(false);
+  };
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
@@ -143,7 +175,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           <p className="text-gray-600 mb-6 text-lg">{product.description}</p>
 
           {product.sellerName && product.sellerId && (
-            <div className="flex items-center gap-2 mb-6 p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-2 mb-6 p-3 bg-gray-50 rounded-lg flex-wrap">
               <span className="text-sm text-gray-500">{t('soldBy')}:</span>
               <Link href={`/products?sellerId=${product.sellerId}`} className="text-sm font-medium text-green-600 hover:text-green-700">
                 {product.sellerName}
@@ -152,6 +184,22 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               <Link href={`/products?sellerId=${product.sellerId}`} className="text-xs text-gray-400 hover:text-green-600">
                 {t('viewSellerProducts')} →
               </Link>
+              {session?.user?.id && !isSeller && (
+                <>
+                  <span className="text-gray-300">·</span>
+                  <button
+                    onClick={handleFollow}
+                    disabled={followLoading}
+                    className={`text-xs px-2 py-1 rounded-full border transition-colors ${
+                      following
+                        ? 'border-green-600 bg-green-600 text-white hover:bg-green-700'
+                        : 'border-gray-300 text-gray-600 hover:border-green-600 hover:text-green-600'
+                    }`}
+                  >
+                    {following ? t('following') : t('follow')}
+                  </button>
+                </>
+              )}
             </div>
           )}
 

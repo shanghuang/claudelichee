@@ -11,6 +11,9 @@
     "db:migrate": "drizzle-kit push",
     "db:seed": "npx tsx src/db/seed.ts",
     "db:studio": "drizzle-kit studio",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report",
     "postinstall": "npm rebuild better-sqlite3 --build-from-source"
   },
   "dependencies": {
@@ -24,6 +27,7 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
     "@types/better-sqlite3": "^7.6.13",

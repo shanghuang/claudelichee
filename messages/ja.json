@@ -3,6 +3,7 @@
     "products": "商品",
     "orders": "注文",
     "history": "購入履歴",
+    "feed": "フィード",
     "admin": "管理",
     "seller": "セラー",
     "signIn": "ログイン",
@@ -49,6 +50,9 @@
     "category": "カテゴリー",
     "soldBy": "販売者",
     "viewSellerProducts": "全商品を見る",
+    "follow": "フォロー",
+    "unfollow": "フォロー解除",
+    "following": "フォロー中",
     "timeline": "セラー更新情報",
     "timelineEmpty": "更新情報はまだありません。",
     "postUpdate": "投稿する",
@@ -212,6 +216,17 @@
     "buyAgain": "また買う",
     "unavailable": "販売終了",
     "soldBy": "販売者"
+  },
+  "feed": {
+    "title": "セラーフィード",
+    "noFeed": "更新情報はまだありません。",
+    "notLoggedIn": "フォロー中のセラーの更新情報を見るにはログインしてください。",
+    "noFollows": "まだセラーをフォローしていません。",
+    "browseProducts": "商品を見る",
+    "by": "投稿者",
+    "follow": "フォロー",
+    "unfollow": "フォロー解除",
+    "following": "フォロー中"
   },
   "footer": {
     "brandDesc": "新鮮なフルーツをご自宅へ。地元農家からの高品質な農産物。",
